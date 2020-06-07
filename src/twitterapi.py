@@ -14,17 +14,24 @@ class TwitterApi:
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     # Authentication of access token and secret
     auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit='true')
 
     # Update the status
     def send_tweet(self, message):
         self.api.update_status(status=message)
     
-    # Display the timeline
-    def display_timeline(self):
+    # Retrieve the timeline
+    def get_timeline(self):
+        print("get-timeline")
         timeline = self.api.home_timeline()
+        print("getting timeline...")
+        tl = []
+        # return timeline
         for tweet in timeline:
-            print(f"{tweet.user.screen_name}: {tweet.text}")    
-
+            # print(f"{tweet.user.screen_name}: {tweet.text}")    
+            tl.append(tweet.user.screen_name + ": " + tweet.text)
+        return tl    
 
 client = TwitterApi()
+# x = client.get_timeline()
+# print("\n".join(x))

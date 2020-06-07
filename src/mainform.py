@@ -17,11 +17,15 @@ class MainForm(npyscreen.FormBaseNew):
 
         new_handlers = {
             "^D": self.exit_func,
-            "^H": self.display_timeline,
             curses.ascii.alt(curses.ascii.NL): self.send_tweet
         }
         self.add_handlers(new_handlers)
 
+    # def while_waiting(self):
+        # tl = client.get_timeline()
+        # self.timeLine.value = "\n".join(tl)
+        # print("\n".join(tl))
+        
     def send_tweet(self, event):
         msg = self.tweetBox.value
         if msg is not "" and len(msg) <= MAX_TWEET_CHARS:
@@ -32,8 +36,6 @@ class MainForm(npyscreen.FormBaseNew):
             xcess_chars = len(msg) - MAX_TWEET_CHARS
             msg = "The tweet is {} characters more than the max limit".format(xcess_chars)
 
-    def display_timeline(self,event):
-        client.display_timeline()
-
     def exit_func(self, _input):
         exit(0)
+

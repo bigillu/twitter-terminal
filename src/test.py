@@ -21,7 +21,6 @@ class TimeLine(npyscreen.MultiLineEdit):
 
     def display_timeline(self,event):
         tl = client.get_timeline()
-
         self.value = "\n".join(tl) 
 
     def __init__(self, *args, **kargs):

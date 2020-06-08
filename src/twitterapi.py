@@ -22,16 +22,10 @@ class TwitterApi:
     
     # Retrieve the timeline
     def get_timeline(self):
-        print("get-timeline")
-        timeline = self.api.home_timeline()
-        print("getting timeline...")
+        timeline = self.api.home_timeline(count=20)
         tl = []
-        # return timeline
         for tweet in timeline:
-            # print(f"{tweet.user.screen_name}: {tweet.text}")    
             tl.append(tweet.user.screen_name + ": " + tweet.text)
         return tl    
 
 client = TwitterApi()
-# x = client.get_timeline()
-# print("\n".join(x))
